@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Muscle Calculations</title>
+  <link rel="stylesheet" href="./Stylesheets/base.css" type="text/css">
+  <script>
+    function gearratio() {
+      var intRPM;
+      var intGears;
+      var realTire;
+      var realRear;
+  
+      var test;
+  
+      //intRPM = document.getElementById("rpm").value
+  
+  
+  
+      //document.getElementById("rpm").value = intRPM;
+      //document.getElementById("gear").value = realRear;
+      //document.getElementById("tire").value = realTire;
+  
+      intGears = document.getElementById("gears").value;
+      intRPM = document.getElementById("rpm").value;
+      realRear = document.getElementById("gear").value;
+      realTire = document.getElementById("tire").value;
+  
+      test = Math.round(((intRPM / realRear) * (Math.PI * realTire) /12/5280*60));
+  
+      document.getElementById("stuff").innerHTML = test;
+      document.getElementById("trannygears").innerHTML = intGears;
+  
+      // set number of transmission speeds
+      //set transmission gear ratio(s)
+      // set rear end ratio or ratios?
+      // set tire diameter.
+      //clutch slip?
+    }
+
+function gearchoice() {
+
+  var intI;
+  var intGears;
+  var holder;
+  intGears = document.getElementById("gears").value;
+  
+  document.table
+  document.getElementById("trannygears").innerHTML = intGears;
+  
+  objShit = document.getElementById("trannytable");
+  
+//    intI = 10;
+//    while (intI > 0) {
+//     shitrow = objShit.rows;
+//     document.getElementById("junk").innterHTML = shitrow;
+//    }
+  
+  
+  intI = intGears;
+  while (intI > 0) {
+    shitrow = objShit.insertRow(0);
+    holder = shitrow.insertCell(0);
+    holder.innerHTML = intI;
+    holder =  shitrow.insertCell(1);
+    holder.innerHTML =  "<input type=\"number\">";
+    intI = intI - 1;
+    }
+}  
+</script>
+</head>
+
+<body onload="gearchoice()">
+<form>
+  <p>Gear ratio and speed calculator.</p>
+  <p>Number of transmission gears <input id="gears" type="Range" min="1" max="10" onchange="gearchoice()"></p>
+  <div>
+    <table id="trannytable">
+  <!--     <caption>Please enter the associated gear ratios for your transmission.</caption> -->
+      <thead>
+	<tr><th>Gear<th>Ratio
+      <tbody>
+    
+    </table>
+    <div id="trannygears"> </div>
+  </div>
+  
+  
+  <p>Engine RPM <input id="rpm" type="Number" min=0 required onchange="gearratio()"></p>
+  <p>Rear end gear ratio <input id="gear" type="Number" min=0 step=0.01  required onchange="gearratio()"></p>
+  <p>Tire diamer (in inches)<input id="tire" type="Number" min=0 step=0.1 required onchange="gearratio()"></p>
+  <div>Estimated speed: <div id="stuff"></div></div>
+
+  <div id="junk"></div>
+</form>
+<!-- <button type="button" onclick="gearratio()">Speed</button> -->
+
+
+</body>
+</html>
