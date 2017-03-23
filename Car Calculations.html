@@ -27,6 +27,9 @@
       document.getElementById("stuff").innerHTML = test;
       document.getElementById("trannygears").innerHTML = intGears;
 
+//grab the trannytable then pull each individual gear ratio?
+      objTrannyTable = document.getElementById("trannytable");
+
       // set number of transmission speeds
       //set transmission gear ratio(s)
       // set rear end ratio or ratios?
@@ -45,18 +48,23 @@ function gearchoice() {
   document.getElementById("trannygears").innerHTML = intGears;
 
   objShit = document.getElementById("trannytable");
+  /////////////////////////////////////////////////////////////////////////////
 //Can I count the rows in objShit?  Can I do something like:
 // IF objShit.rows.count > IntGears then start deleting last row untl IntGears = objShit.rows.count
 // IF objShit.rows.count == IntGears then do nothing.
 // IF objShit.rows.count < IntGears then add rows until IntGears = objShit.rows.count
 
+ document.getElementById("Test").innerHTML =  objShit.rows;
 
+ /////////////////////////////////////////////////////////////////////////////
   intI = intGears;
   while (intI > 0) {
-    shitrow = objShit.insertRow(0);
+    shitrow = objShit.insertRow(1);
     holder = shitrow.insertCell(0);
     holder.innerHTML = intI;
     holder =  shitrow.insertCell(1);
+    holder.innerHTML =  "<input type=\"number\">";
+    holder = shitrow.insertCell(2);
     holder.innerHTML =  "<input type=\"number\">";
     intI = intI - 1;
     }
@@ -72,9 +80,10 @@ function gearchoice() {
     <table id="trannytable">
   <!--     <caption>Please enter the associated gear ratios for your transmission.</caption> -->
       <thead>
-	<tr><th>Gear<th>Ratio
+	       <tr><th>Gear</th><th>Ratio</th><th>Speed</th></tr>
+      </thead>
       <tbody>
-
+      </tbody>
     </table>
     <div id="trannygears"> </div>
   </div>
@@ -87,6 +96,8 @@ function gearchoice() {
 
   <div id="junk"></div>
 </form>
-<p>Yes I have some junk text here to describe what I am doing.</p>
+<p>Yes I have some junk text here to describe what I am doing.  P.S. get the movie LA LA LAND to watch one evening.  Maybe not kid friendly but looks to be a good one for
+<div id="Test"></div>
+</p>
 </body>
 </html>
