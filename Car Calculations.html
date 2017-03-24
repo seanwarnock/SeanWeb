@@ -30,6 +30,7 @@
 
 //grab the trannytable then pull each individual gear ratio?
       objTrannyTable = document.getElementById("trannytable");
+
     }
 
 function gearchoice() {
@@ -50,7 +51,8 @@ function gearchoice() {
 // IF objShit.rows.count == IntGears then do nothing.
 // IF objShit.rows.count < IntGears then add rows until IntGears = objShit.rows.count
 
- document.getElementById("Test").innerHTML =  objShit.rows;
+//GOT IT!!!  This code returns the length of the table.
+ document.getElementById("Test").innerHTML =  objShit.rows.length;
 
 /////////////////////////////////////////////////////////////////////////////
 
