@@ -52,7 +52,7 @@ function gearchoice() {
 // IF objShit.rows.count < IntGears then add rows until IntGears = objShit.rows.count
 
 //GOT IT!!!  This code returns the length of the table.
- document.getElementById("Test").innerHTML =  objShit.rows.length;
+ document.getElementById("junk").innerHTML =  objShit.rows.length;
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -96,16 +96,16 @@ intI = intGears;
   </div>
 
 
-  <p>Engine RPM <input id="rpm" type="Number" min=0 required onchange="gearratio()"></p>
-  <p>Rear end gear ratio <input id="gear" type="Number" min=0 step=0.01  required onchange="gearratio()"></p>
-  <p>Tire diamer (in inches)<input id="tire" type="Number" min=0 step=0.1 required onchange="gearratio()"></p>
+  <p>Engine RPM <input id="rpm" type="Number" min=0 onchange="gearratio()"></p>
+  <p>Rear end gear ratio <input id="gear" type="Number" min=0 step=0.01 onchange="gearratio()"></p>
+  <p>Tire diamer (in inches)<input id="tire" type="Number" min=0 step=0.1 onchange="gearratio()"></p>
   <div>Estimated speed: <div id="stuff"></div></div>
 
   <div id="junk"></div>
 </form>
 
 <p>Yes I have some junk text here to describe what I am doing.  P.S. get the movie LA LA LAND to watch one evening.  Maybe not kid friendly but looks to be a good one for
-<div id="Test"></div>
+<span id="Test"></span>
 </p>
 </body>
 </html>
