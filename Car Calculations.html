@@ -51,8 +51,34 @@ function gearchoice() {
 // IF objShit.rows.count == IntGears then do nothing.
 // IF objShit.rows.count < IntGears then add rows until IntGears = objShit.rows.count
 
+//draw table write out variable.
+
 //GOT IT!!!  This code returns the length of the table.
  document.getElementById("Test").innerHTML =  objShit.rows.length;
+
+intI = intGears;
+if (objShit.rows.length < intGears){
+//need to be smart about adding stuff in.
+
+  while (intI > 0) {
+    shitrow = objShit.insertRow(-1);
+    holder = shitrow.insertCell(0);
+    holder.innerHTML = intI;
+    holder =  shitrow.insertCell(1);
+    holder.innerHTML =  "<input type=\"number\">";
+    holder = shitrow.insertCell(2);
+    holder.innerHTML =  "<input type=\"number\">";
+    intI = intI - 1;
+    }
+}
+  if (objShit.rows.length > intGears) {
+//remove stuff from table
+    intI = intGears - objShit.rows.length
+    while (intI > 0){
+      objShit.deleteRow(-1);
+      intI = intI -1;
+    }
+  }
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -64,17 +90,6 @@ function gearchoice() {
 //    }
 
 
-intI = intGears;
-  while (intI > 0) {
-    shitrow = objShit.insertRow(-1);
-    holder = shitrow.insertCell(0);
-    holder.innerHTML = intI;
-    holder =  shitrow.insertCell(1);
-    holder.innerHTML =  "<input type=\"number\">";
-    holder = shitrow.insertCell(2);
-    holder.innerHTML =  "<input type=\"number\">";
-    intI = intI - 1;
-    }
 
     //Idea to count total rows and maintain a row count, then add or remove rows to match intGears?
 }
@@ -107,7 +122,8 @@ intI = intGears;
 </form>
 
 <p>Yes I have some junk text here to describe what I am doing.  P.S. get the movie LA LA LAND to watch one evening.  Maybe not kid friendly but looks to be a good one for Jessica.
-<div id="Test"></div>
+
 </p>
+<div id="Test"></div>
 </body>
 </html>
