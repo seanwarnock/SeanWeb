@@ -1,1 +1,7 @@
-p{color:red};
+p {
+    color:black;
+  }
+table {
+  color:pink;
+  counter-increment:;
+  }

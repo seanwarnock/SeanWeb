@@ -4,126 +4,98 @@
 <title>Muscle Calculations</title>
   <link rel="stylesheet" href="./Stylesheets/base.css" type="text/css">
   <script>
-    function gearratio() {
-      var intRPM;
-      var intGears;
-      var realTire;
-      var realRear;
+////////////////////////////////////////////////////////////////////////////////
+  function gearratio() {
+    "use strict"
+    var intRPM;
+    var intGears;
+    var realTire;
+    var realRear;
+    var test;
 
-      var test;
+    intGears = document.getElementById("gears").value;
+    intRPM = document.getElementById("rpm").value;
+    realRear = document.getElementById("gear").value;
+    realTire = document.getElementById("tire").value;
 
-      //intRPM = document.getElementById("rpm").value
-      //document.getElementById("rpm").value = intRPM;
-      //document.getElementById("gear").value = realRear;
-      //document.getElementById("tire").value = realTire;
+    test = Math.round(((intRPM / realRear) * (Math.PI * realTire) /12/5280*60));
 
-      intGears = document.getElementById("gears").value;
-      intRPM = document.getElementById("rpm").value;
-      realRear = document.getElementById("gear").value;
-      realTire = document.getElementById("tire").value;
-
-      test = Math.round(((intRPM / realRear) * (Math.PI * realTire) /12/5280*60));
-
-      document.getElementById("stuff").innerHTML = test;
-      document.getElementById("trannygears").innerHTML = intGears;
-
+    document.getElementById("stuff").innerHTML = test;
+    document.getElementById("trannygears").innerHTML = intGears;
 
 //grab the trannytable then pull each individual gear ratio?
-      objTrannyTable = document.getElementById("trannytable");
-
+    objTrannyTable = document.getElementById("trannytable");
     }
+////////////////////////////////////////////////////////////////////////////////
 
-function gearchoice() {
+  function gearchoice() {
+    "use strict"
+    var intI;
+    var intGears;
+    var holder;
+    var objTrannyTable;
+    var gearchoice;
+    var objTableRow;
+    intGears = parseInt(document.getElementById("gears").value, 10) + 1;
 
-  var intI;
-  var intGears;
-  var holder;
-  intGears = document.getElementById("gears").value;
-
-  document.table
-  document.getElementById("trannygears").innerHTML = intGears;
-
-  objShit = document.getElementById("trannytable");
-
+    document.getElementById("trannygears").innerHTML = intGears + " intGears";
+    objTrannyTable = document.getElementById("trannytable");
+    if (objTrannyTable.rows.length < intGears){
+      intI = intGears - objTrannyTable.rows.length;
+      while (intI > 0) {
+        objTableRow = objTrannyTable.insertRow(-1);
+        holder = objTableRow.insertCell(0);
+        holder.innerHTML = objTableRow.rowIndex;
+        holder =  objTableRow.insertCell(1);
+        holder.innerHTML =  "<input type=\"number\">";
+        holder = objTableRow.insertCell(2);
+        holder.innerHTML =  "<input type=\"number\">";
+        intI = intI - 1;
+        }
+      }
+    if (objTrannyTable.rows.length > intGears){
+      intI = objTrannyTable.rows.length - intGears;
+      while (intI > 0){
+        objTrannyTable.deleteRow(-1);
+        intI = intI -1;
+      }
+    }
 /////////////////////////////////////////////////////////////////////////////
-//Can I count the rows in objShit?  Can I do something like:
-// IF objShit.rows.count > IntGears then start deleting last row untl IntGears = objShit.rows.count
-// IF objShit.rows.count == IntGears then do nothing.
-// IF objShit.rows.count < IntGears then add rows until IntGears = objShit.rows.count
-
-//draw table write out variable.
-
-//GOT IT!!!  This code returns the length of the table.
- document.getElementById("Test").innerHTML =  objShit.rows.length;
-
-intI = intGears;
-if (objShit.rows.length < intGears){
-//need to be smart about adding stuff in.
-
-  while (intI > 0) {
-    shitrow = objShit.insertRow(-1);
-    holder = shitrow.insertCell(0);
-    holder.innerHTML = intI;
-    holder =  shitrow.insertCell(1);
-    holder.innerHTML =  "<input type=\"number\">";
-    holder = shitrow.insertCell(2);
-    holder.innerHTML =  "<input type=\"number\">";
-    intI = intI - 1;
-    }
-}
-  if (objShit.rows.length > intGears) {
-//remove stuff from table
-    intI = intGears - objShit.rows.length
-    while (intI > 0){
-      objShit.deleteRow(-1);
-      intI = intI -1;
-    }
   }
-
-/////////////////////////////////////////////////////////////////////////////
-
-
-//    intI = 10;
-//    while (intI > 0) {
-//     shitrow = objShit.rows;
-//     document.getElementById("junk").innterHTML = shitrow;
-//    }
-
-
-
-    //Idea to count total rows and maintain a row count, then add or remove rows to match intGears?
-}
 </script>
 </head>
-
 <body onload="gearchoice()">
-<form>
-  <p>Gear ratio and speed calculator.</p><p>By William, Victor and Daddy Warnock.</p>
-  <p>Number of transmission gears <input id="gears" type="Range" min="1" max="10" onchange="gearchoice()"></p>
-  <div>
-    <table id="trannytable">
+  <form>
+    <p>Gear ratio and speed calculator.</p><p>By William, Victor and Daddy Warnock.</p>
+    <p>Number of transmission gears <input id="gears" type="Range" min="1" max="10" onchange="gearchoice()"></p>
+    <div>
+      <table id="trannytable">
   <!--     <caption>Please enter the associated gear ratios for your transmission.</caption> -->
-      <thead>
-	       <tr><th>Gear</th><th>Ratio</th><th>Speed</th></tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
-    <div id="trannygears"> </div>
-  </div>
+        <thead>
+	        <tr><th>Gear</th><th>Ratio</th><th>Speed</th></tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <div id="trannygears"> </div>
+    </div>
 
+    <p>Engine RPM <input id="rpm" type="Number" min=0 required onchange="gearratio()"></p>
+    <p>Rear end gear ratio <input id="gear" type="Number" min=0 step=0.01  required onchange="gearratio()"></p>
+    <p>Tire diamer (in inches)<input id="tire" type="Number" min=0 step=0.1 required onchange="gearratio()"></p>
+    <div>Estimated speed: <div id="stuff"></div></div>
+    <div id="junk"></div>
+  </form>
 
-  <p>Engine RPM <input id="rpm" type="Number" min=0 required onchange="gearratio()"></p>
-  <p>Rear end gear ratio <input id="gear" type="Number" min=0 step=0.01  required onchange="gearratio()"></p>
-  <p>Tire diamer (in inches)<input id="tire" type="Number" min=0 step=0.1 required onchange="gearratio()"></p>
-  <div>Estimated speed: <div id="stuff"></div></div>
-
-  <div id="junk"></div>
-</form>
-
-<p>Yes I have some junk text here to describe what I am doing.  P.S. get the movie LA LA LAND to watch one evening.  Maybe not kid friendly but looks to be a good one for Jessica.
-
-</p>
+  <p>
+    This program will calculate the speed of a vehicle for every gear.  If you have a transaxle use 1 for the rear end ratio.
+  </p>
+  <p>
+    All of this is programmed by hand and every attempt is made to have it support a standard web browser that can support HTML5 and ECMA Script 5.
+  </p>
+  <p>
+    P.S. get the movie LA LA LAND to watch one evening.  Maybe not kid friendly but looks to be a good one for Jessica.
+  </p>
 <div id="Test"></div>
 </body>
 </html>
