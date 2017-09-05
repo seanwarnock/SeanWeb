@@ -12,6 +12,8 @@
     var realTire;
     var realRear;
     var test;
+    var intCounter;
+    var objTrannyTable;
 
     intGears = document.getElementById("gears").value;
     intRPM = document.getElementById("rpm").value;
@@ -25,6 +27,13 @@
 
 //grab the trannytable then pull each individual gear ratio?
     objTrannyTable = document.getElementById("trannytable");
+
+    intCounter = objTrannyTable.rows.length - 1;
+    while (intCounter > 0){
+      objTrannyTable.rows[(parseInt(intCounter))].cells[2].innerHTML = "Hello Sean";
+      intCounter = intCounter - 1;
+    }
+
     }
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -57,7 +66,7 @@
       intI = objTrannyTable.rows.length - intGears;
       while (intI > 0){
         objTrannyTable.deleteRow(-1);
-        intI = intI -1;
+        intI = intI - 1;
       }
     }
 /////////////////////////////////////////////////////////////////////////////
@@ -91,7 +100,7 @@
     This program will calculate the speed of a vehicle for every gear.  If you have a transaxle use 1 for the rear end ratio.
   </p>
   <p>
-    All of this is programmed by hand and every attempt is made to have it support a standard web browser that can support HTML5 and ECMA Script 5.
+    All of this is programmed by hand and every attempt is made to have it support a standard web browser that can support <a href="http://www.w3.org/TR/html5/HTML5">html5</a> and <a href="https://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA Script</a>.
   </p>
   <p>
     P.S. get the movie LA LA LAND to watch one evening.  Maybe not kid friendly but looks to be a good one for Jessica.
