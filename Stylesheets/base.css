@@ -1,7 +1,7 @@
 p {
     color:black;
   }
-table {
-  color:pink;
-  counter-increment:;
+thead {
+  color:red;
+  /*counter-increment:; */
   }

@@ -12,6 +12,7 @@
     var realTire;
     var realRear;
     var test;
+    var test2;
     var intCounter;
     var objTrannyTable;
 
@@ -20,7 +21,7 @@
     realRear = document.getElementById("gear").value;
     realTire = document.getElementById("tire").value;
 
-    test = Math.round(((intRPM / realRear) * (Math.PI * realTire) /12/5280*60));
+    //test = Math.round(((intRPM / realRear) * (Math.PI * realTire) /12/5280*60));
 
     document.getElementById("stuff").innerHTML = test;
     document.getElementById("trannygears").innerHTML = intGears;
@@ -30,7 +31,9 @@
 
     intCounter = objTrannyTable.rows.length - 1;
     while (intCounter > 0){
-      objTrannyTable.rows[(parseInt(intCounter))].cells[2].innerHTML = "Hello Sean";
+      test2 =  Math.round(((intRPM / objTrannyTable.rows[(parseInt(intCounter))].cells[1].children[0].value) * (Math.PI * realTire) /12/5280*60))
+      objTrannyTable.rows[(parseInt(intCounter))].cells[2].children[0].value = test2;
+
       intCounter = intCounter - 1;
     }
 
@@ -47,7 +50,7 @@
     var objTableRow;
     intGears = parseInt(document.getElementById("gears").value, 10) + 1;
 
-    document.getElementById("trannygears").innerHTML = intGears + " intGears";
+    //document.getElementById("trannygears").innerHTML = intGears + " intGears";
     objTrannyTable = document.getElementById("trannytable");
     if (objTrannyTable.rows.length < intGears){
       intI = intGears - objTrannyTable.rows.length;
@@ -56,9 +59,9 @@
         holder = objTableRow.insertCell(0);
         holder.innerHTML = objTableRow.rowIndex;
         holder =  objTableRow.insertCell(1);
-        holder.innerHTML =  "<input type=\"number\">";
+        holder.innerHTML =  "<input type=\"number\" id=\"gear\">";
         holder = objTableRow.insertCell(2);
-        holder.innerHTML =  "<input type=\"number\">";
+        holder.innerHTML =  "<input type=\"number\" id=\"speed\">";
         intI = intI - 1;
         }
       }
@@ -69,7 +72,7 @@
         intI = intI - 1;
       }
     }
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
   }
 </script>
 </head>
@@ -89,9 +92,9 @@
       <div id="trannygears"> </div>
     </div>
 
-    <p>Engine RPM <input id="rpm" type="Number" min=0 required onchange="gearratio()"></p>
-    <p>Rear end gear ratio <input id="gear" type="Number" min=0 step=0.01  required onchange="gearratio()"></p>
-    <p>Tire diamer (in inches)<input id="tire" type="Number" min=0 step=0.1 required onchange="gearratio()"></p>
+    <p>Engine RPM <input id="rpm" type="number" min=0 required onchange="gearratio()"></p>
+    <p>Rear end gear ratio <input id="gear" type="number" min=0 step=0.01  required onchange="gearratio()"></p>
+    <p>Tire diamer (in inches)<input id="tire" type="number" min=0 step=0.1 required onchange="gearratio()"></p>
     <div>Estimated speed: <div id="stuff"></div></div>
     <div id="junk"></div>
   </form>
