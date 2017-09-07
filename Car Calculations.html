@@ -31,10 +31,12 @@
 
     intCounter = objTrannyTable.rows.length - 1;
     while (intCounter > 0){
-      test2 =  Math.round(((intRPM / objTrannyTable.rows[(parseInt(intCounter))].cells[1].children[0].value) * (Math.PI * realTire) /12/5280*60))
+      //test2 =  Math.round(((intRPM / (objTrannyTable.rows[(parseInt(intCounter))].cells[1].children[0].value) * realRear) * (Math.PI * realTire) /12/5280*60));
+      test2 = Math.round(((intRPM / (objTrannyTable.rows[(parseInt(intCounter))].cells[1].children[0].value * realRear)) * (Math.PI * realTire) /12/5280*60));
+      test = /* (objTrannyTable.rows[(parseInt(intCounter))].cells[1].children[0].value) */ realRear;
       objTrannyTable.rows[(parseInt(intCounter))].cells[2].children[0].value = test2;
-
       intCounter = intCounter - 1;
+      document.getElementById("stuff").innerHTML = test;
     }
 
     }
