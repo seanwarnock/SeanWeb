@@ -12,7 +12,7 @@
     var realTire;
     var realRear;
 //    var test;
-    var test2;
+//    var test2;
     var intCounter;
     var objTrannyTable;
 
@@ -29,8 +29,8 @@
 
     intCounter = objTrannyTable.rows.length - 1;
     while (intCounter > 0){
-      test2 = Math.round(intRPM / (objTrannyTable.rows[(parseInt(intCounter))].cells[1].children[0].value * realRear) * (Math.PI * realTire) /12/5280*60);
-      objTrannyTable.rows[(parseInt(intCounter))].cells[2].children[0].value = test2;
+      objTrannyTable.rows[(parseInt(intCounter))].cells[2].children[0].value = Math.round(intRPM / (objTrannyTable.rows[(parseInt(intCounter))].cells[1].children[0].value * realRear) * (Math.PI * realTire) /12/5280*60);
+      //objTrannyTable.rows[(parseInt(intCounter))].cells[2].children[0].value = test2;
       intCounter = intCounter - 1;
     }
   }
@@ -54,7 +54,7 @@
         holder = objTableRow.insertCell(0);
         holder.innerHTML = objTableRow.rowIndex;
         holder =  objTableRow.insertCell(1);
-        holder.innerHTML =  "<input type=\"number\" step=\"0.01\">";
+        holder.innerHTML =  "<input type=\"number\" step=\"0.01\" onchange=\"gearratio()\">";
         holder = objTableRow.insertCell(2);
         holder.innerHTML =  "<input type=\"number\" id=\"speed\">";
         intI = intI - 1;
