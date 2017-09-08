@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Muscle Calculations</title>
+<title>Automotive Calculations</title>
   <link rel="stylesheet" href="./Stylesheets/base.css" type="text/css">
   <script>
 ////////////////////////////////////////////////////////////////////////////////
@@ -11,8 +11,6 @@
     var intGears;
     var realTire;
     var realRear;
-//    var test;
-//    var test2;
     var intCounter;
     var objTrannyTable;
 
@@ -22,15 +20,12 @@
     realRear = document.getElementById("gear").value;
     realTire = document.getElementById("tire").value;
 
-    document.getElementById("trannygears").innerHTML = intGears;
-
 //grab the trannytable then pull each individual gear ratio?
     objTrannyTable = document.getElementById("trannytable");
 
     intCounter = objTrannyTable.rows.length - 1;
     while (intCounter > 0){
       objTrannyTable.rows[(parseInt(intCounter))].cells[2].children[0].value = Math.round(intRPM / (objTrannyTable.rows[(parseInt(intCounter))].cells[1].children[0].value * realRear) * (Math.PI * realTire) /12/5280*60);
-      //objTrannyTable.rows[(parseInt(intCounter))].cells[2].children[0].value = test2;
       intCounter = intCounter - 1;
     }
   }
