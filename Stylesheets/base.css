@@ -5,3 +5,6 @@ thead {
   color:red;
   /*counter-increment:; */
   }
+input:invalid {
+    color:red;
+  }
