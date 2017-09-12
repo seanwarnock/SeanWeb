@@ -2,7 +2,8 @@
 <html>
 <head>
 <title>Automotive Calculations</title>
-  <link rel="stylesheet" href="./stylesheets/base.css" type="text/css">
+  <link rel="icon" type="image/png" href="./images/favicon.png" />
+  <link rel="stylesheet" href="./stylesheets/base.css" type="text/css" />
   <script>
 ////////////////////////////////////////////////////////////////////////////////
   function gearratio() {
@@ -84,9 +85,8 @@
     <p>
       Gear ratio and speed calculator.
     </p>
-    <p>
-      By William, Victor and Daddy Warnock.
-    </p>
+    <p>This program will calculate the speed of a vehicle for every gear.  If you have a transaxle use 1 for the rear end ratio.</p>
+    <p>For those interested this is accomplished by dividing the RPM by the final gear ratio then multiplying the circumfres of the tire.</p>
     <p>Number of transmission gears <input id="gears" type="Range" min="1" max="10" onchange="gearchoice()"></p>
     <div>
       <table id="trannytable">
@@ -112,13 +112,13 @@
 <!--    <div id="junk"></div> -->
   </form>
 
-  <p>
-    This program will calculate the speed of a vehicle for every gear.  If you have a transaxle use 1 for the rear end ratio.
-  </p>
-  <p>
-    All of this is programmed by hand and every attempt is made to have it support a standard web browser that can support <a href="http://www.w3.org/TR/html5/HTML5">html5</a> and <a href="https://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA Script</a>.
-  </p>
+
+
   <!--http://www.offroaders.com/technical/p-metric-tire-sizes-p-metric-to-inches-conversion-chart/ -->
 <div id="Test"></div>
+  <footer>
+    <p>All of this is programmed by hand and every attempt is made to have it support a standard web browser that can support <a href="https://www.w3.org/html/" target="=_blank">HTML 5.1</a> and <a href="https://www.ecma-international.org/publications/standards/Ecma-262.htm" target="_blank">ECMA Script</a>.</p>
+    <p>By William, Victor and Daddy Warnock.</p>
+  </footer>
 </body>
 </html>
