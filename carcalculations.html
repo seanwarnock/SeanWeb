@@ -2,7 +2,11 @@
 <html>
 <head>
 <title>Automotive Calculations</title>
+<<<<<<< HEAD:Car Calculations.html
   <link rel="stylesheet" href="./Stylesheets/base.css" type="text/css">
+=======
+  <link rel="stylesheet" href="./stylesheets/base.css" type="text/css">
+>>>>>>> origin/master:carcalculations.html
   <script>
 ////////////////////////////////////////////////////////////////////////////////
   function gearratio() {
@@ -11,22 +15,47 @@
     var intGears;
     var realTire;
     var realRear;
+<<<<<<< HEAD:Car Calculations.html
+=======
+    var intDistanceInch = 12;
+    var intDistanceFoot = 5280;
+    var intDistanceKilometers = 1000000;
+    var intTime = 60;
+>>>>>>> origin/master:carcalculations.html
     var intCounter;
     var objTrannyTable;
-
 
     intGears = document.getElementById("gears").value;
     intRPM = document.getElementById("rpm").value;
     realRear = document.getElementById("gear").value;
     realTire = document.getElementById("tire").value;
 
+<<<<<<< HEAD:Car Calculations.html
+=======
+
+>>>>>>> origin/master:carcalculations.html
 //grab the trannytable then pull each individual gear ratio?
     objTrannyTable = document.getElementById("trannytable");
 
     intCounter = objTrannyTable.rows.length - 1;
     while (intCounter > 0){
+<<<<<<< HEAD:Car Calculations.html
       objTrannyTable.rows[(parseInt(intCounter))].cells[2].children[0].value = Math.round(intRPM / (objTrannyTable.rows[(parseInt(intCounter))].cells[1].children[0].value * realRear) * (Math.PI * realTire) /12/5280*60);
       intCounter = intCounter - 1;
+=======
+      switch (document.getElementById("MeasureSystem").value){
+        case "english":
+//Basic formula that takes the diameter of a wheel, determines the circumfres and finally multiplys the circumfres by the rotaion speed.  Then the rotation speed is divided by to get milaege.
+          objTrannyTable.rows[(parseInt(intCounter))].cells[2].children[0].value = Math.round(intRPM / (objTrannyTable.rows[(parseInt(intCounter))].cells[1].children[0].value * realRear) * (Math.PI * realTire) /intDistanceInch/intDistanceFoot*intTime);
+          intCounter = intCounter - 1;
+          break;
+        case "metric":
+//Same formula as before but for metric calculation.  This was the best way I could come up to deal with the two different measurement systems.  Maybe I can get this down to a single linne.
+          objTrannyTable.rows[(parseInt(intCounter))].cells[2].children[0].value = Math.round(intRPM / (objTrannyTable.rows[(parseInt(intCounter))].cells[1].children[0].value * realRear) * (Math.PI * realTire) /intDistanceKilometers*intTime);
+          intCounter = intCounter - 1;
+          break;
+      }
+>>>>>>> origin/master:carcalculations.html
     }
   }
 ////////////////////////////////////////////////////////////////////////////////
@@ -69,7 +98,7 @@
 <body onload="gearchoice()">
   <form>
     <p>
-      Gear ratio and speed calculator.  Please note all values are in the English system.
+      Gear ratio and speed calculator.
     </p>
     <p>
       By William, Victor and Daddy Warnock.
@@ -84,15 +113,19 @@
         <tbody>
         </tbody>
       </table>
-      <div id="trannygears"> </div>
     </div>
 
     <p>Engine RPM <input id="rpm" type="number" min=0 required onchange="gearratio()"></p>
     <p>Rear end gear ratio <input id="gear" type="number" min=0 step=0.01  required onchange="gearratio()"></p>
     <p>Tire diamer (in inches)<input id="tire" type="number" min=0 step=0.1 required onchange="gearratio()"></p>
-
+<p>
+    <select id="MeasureSystem" onchange="gearratio()">
+      <option value="english">U.S.</option>
+      <option value="metric">Metric</option>
+    </select>
+ </P>
     <!-- <div>Estimated speed: <div id="stuff"></div></div> -->
-    <div id="junk"></div>
+<!--    <div id="junk"></div> -->
   </form>
 
   <p>
@@ -101,9 +134,7 @@
   <p>
     All of this is programmed by hand and every attempt is made to have it support a standard web browser that can support <a href="http://www.w3.org/TR/html5/HTML5">html5</a> and <a href="https://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA Script</a>.
   </p>
-  <p>
-    P.S. get the movie LA LA LAND to watch one evening.  Maybe not kid friendly but looks to be a good one for Jessica.
-  </p>
+  <!--http://www.offroaders.com/technical/p-metric-tire-sizes-p-metric-to-inches-conversion-chart/ -->
 <div id="Test"></div>
 </body>
 </html>
