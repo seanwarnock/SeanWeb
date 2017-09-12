@@ -2,11 +2,7 @@
 <html>
 <head>
 <title>Automotive Calculations</title>
-<<<<<<< HEAD:Car Calculations.html
-  <link rel="stylesheet" href="./Stylesheets/base.css" type="text/css">
-=======
   <link rel="stylesheet" href="./stylesheets/base.css" type="text/css">
->>>>>>> origin/master:carcalculations.html
   <script>
 ////////////////////////////////////////////////////////////////////////////////
   function gearratio() {
@@ -15,13 +11,10 @@
     var intGears;
     var realTire;
     var realRear;
-<<<<<<< HEAD:Car Calculations.html
-=======
     var intDistanceInch = 12;
     var intDistanceFoot = 5280;
     var intDistanceKilometers = 1000000;
     var intTime = 60;
->>>>>>> origin/master:carcalculations.html
     var intCounter;
     var objTrannyTable;
 
@@ -30,19 +23,11 @@
     realRear = document.getElementById("gear").value;
     realTire = document.getElementById("tire").value;
 
-<<<<<<< HEAD:Car Calculations.html
-=======
-
->>>>>>> origin/master:carcalculations.html
 //grab the trannytable then pull each individual gear ratio?
     objTrannyTable = document.getElementById("trannytable");
 
     intCounter = objTrannyTable.rows.length - 1;
     while (intCounter > 0){
-<<<<<<< HEAD:Car Calculations.html
-      objTrannyTable.rows[(parseInt(intCounter))].cells[2].children[0].value = Math.round(intRPM / (objTrannyTable.rows[(parseInt(intCounter))].cells[1].children[0].value * realRear) * (Math.PI * realTire) /12/5280*60);
-      intCounter = intCounter - 1;
-=======
       switch (document.getElementById("MeasureSystem").value){
         case "english":
 //Basic formula that takes the diameter of a wheel, determines the circumfres and finally multiplys the circumfres by the rotaion speed.  Then the rotation speed is divided by to get milaege.
@@ -55,7 +40,6 @@
           intCounter = intCounter - 1;
           break;
       }
->>>>>>> origin/master:carcalculations.html
     }
   }
 ////////////////////////////////////////////////////////////////////////////////
