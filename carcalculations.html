@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="./stylesheets/base.css" type="text/css" />
   <script>
 ////////////////////////////////////////////////////////////////////////////////
+//This performs all the calculations for the speed calculations.
+//Look into adding some kidn of slip estimator.
   function gearratio() {
     "use strict"
     var intRPM;
@@ -44,7 +46,9 @@
     }
   }
 ////////////////////////////////////////////////////////////////////////////////
-
+//Function that generates the gear choice table.
+//Currently there is an issue with how the table is generated.  New table rows
+//are inserted into the table header.
   function gearchoice() {
     "use strict"
     var intI;
@@ -76,19 +80,35 @@
         intI = intI - 1;
       }
     }
+  }
 ///////////////////////////////////////////////////////////////////////////////
+//quick and somewhat dirty function to calculate overall wheel and tire size.
+  function tiresizer() {
+    "use strict"
+
+
+    var inttirewidth = parseInt(document.getElementById("tirewidth").value);
+    var tirer = document.getElementById("tirer");
+    var inttireaspect = parseInt(document.getElementById("tireaspect").value)/100;
+    var inttirewheel = parseInt(document.getElementById("tirewheel").value);
+
+    document.getElementById("tireanswer").innerHTML = Math.round(((inttirewidth * inttireaspect * 2 + (inttirewheel * 25.4)) / 25.4) * 10) / 10;
   }
 </script>
 </head>
 <body onload="gearchoice()">
-  <form>
-    <p>
-      Gear ratio and speed calculator.
-    </p>
+  <div class="leftside">
+    <a href="./index.html">Home</a><br />
+    <a href="./carcalculations.html">Automotive Calulators</a>
+  </div>
+  <div class="center">
+
+    <h1>Gear ratio and speed calculator.</h1>
     <p>This program will calculate the speed of a vehicle for every gear.  If you have a transaxle use 1 for the rear end ratio.</p>
     <p>For those interested this is accomplished by dividing the RPM by the final gear ratio then multiplying the circumfres of the tire.</p>
     <p>Number of transmission gears <input id="gears" type="Range" min="1" max="10" onchange="gearchoice()"></p>
-    <div>
+  <form>
+
       <table id="trannytable">
   <!--     <caption>Please enter the associated gear ratios for your transmission.</caption> -->
         <thead>
@@ -97,25 +117,102 @@
         <tbody>
         </tbody>
       </table>
-    </div>
+
 
     <p>Engine RPM <input id="rpm" type="number" min=0 required onchange="gearratio()"></p>
     <p>Rear end gear ratio <input id="gear" type="number" min=0 step=0.01  required onchange="gearratio()"></p>
-    <p>Tire diamer (in inches)<input id="tire" type="number" min=0 step=0.1 required onchange="gearratio()"></p>
+    <p>Tire diamer<input id="tire" type="number" min=0 step=0.1 required onchange="gearratio()"></p>
 <p>
     <select id="MeasureSystem" onchange="gearratio()">
       <option value="english">U.S.</option>
       <option value="metric">Metric</option>
     </select>
  </P>
-    <!-- <div>Estimated speed: <div id="stuff"></div></div> -->
-<!--    <div id="junk"></div> -->
   </form>
-
+  <h1>Tire Size Calculator</h1>
+  <p>This calculator will assit you in determining the actual size of your tire.  Currently very limited and onlu usable for passenger car tires.</p>
+  <form>
+<!--  Really ugly static HTML content.  Need to migrate this to JSON or something else dynamically populated. -->
+    <select id="tirewidth" onchange="tiresizer()">
+      <option value="160">160</option>
+      <option value="165">165</option>
+      <option value="170">170</option>
+      <option value="175">175</option>
+      <option value="180">180</option>
+      <option value="185">185</option>
+      <option value="190">190</option>
+      <option value="195">195</option>
+      <option value="200">200</option>
+      <option value="205">205</option>
+      <option value="215">215</option>
+      <option value="220">220</option>
+      <option value="225">225</option>
+      <option value="230">230</option>
+      <option value="235">235</option>
+      <option value="240">240</option>
+      <option value="245">245</option>
+      <option value="250">250</option>
+      <option value="255">255</option>
+      <option value="260">260</option>
+      <option value="265">265</option>
+      <option value="270">270</option>
+      <option value="275">275</option>
+      <option value="280">280</option>
+      <option value="285">285</option>
+      <option value="290">290</option>
+      <option value="295">295</option>
+      <option value="300">300</option>
+      <option value="305">305</option>
+      <option value="310">310</option>
+      <option value="315">315</option>
+      <option value="320">320</option>
+      <option value="325">325</option>
+    </select>
+    <select id="tirer" onchange="tiresizer()">
+      <option value="R">R</option>
+      <option value="B">B</option>
+      <option value="D">D</option>
+    </select>
+    <select id="tireaspect" onchange="tiresizer()">
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+      <option value="25">25</option>
+      <option value="30">30</option>
+      <option value="35">35</option>
+      <option value="40">40</option>
+      <option value="45">45</option>
+      <option value="50">50</option>
+      <option value="55">55</option>
+      <option value="60">60</option>
+      <option value="65">65</option>
+      <option value="70">70</option>
+      <option value="83">&nbsp</option>
+    </select>
+    <select id="tirewheel" onchange="tiresizer()">
+      <option value="10">10</optio>
+      <option value="11">11</optio>
+      <option value="12">12</optio>
+      <option value="13">13</optio>
+      <option value="14">14</optio>
+      <option value="15">15</optio>
+      <option value="16">16</optio>
+      <option value="17">17</optio>
+      <option value="18">18</optio>
+      <option value="19">19</optio>
+      <option value="20">20</optio>
+      <option value="21">21</optio>
+    </select>
+    <div id="tireanswer"><div>
+  </form>
+  <h1>What Next?</h1>
+  <p>I'm looking for suggestions for something else to work out.  Compression ratio or maybe airflow requirements for horsepower any suggestions drop me a note.</p>
 
 
   <!--http://www.offroaders.com/technical/p-metric-tire-sizes-p-metric-to-inches-conversion-chart/ -->
-<div id="Test"></div>
+  <div id="Test"></div>
+  </div>
+  <p>Finally the cursorary disclaimer.  This is for informational purposes only.  Results are not garenteed to be correct.</p>
   <footer>
     <p>All of this is programmed by hand and every attempt is made to have it support a standard web browser that can support <a href="https://www.w3.org/html/" target="=_blank">HTML 5.1</a> and <a href="https://www.ecma-international.org/publications/standards/Ecma-262.htm" target="_blank">ECMA Script</a>.</p>
     <p>By William, Victor and Daddy Warnock.</p>

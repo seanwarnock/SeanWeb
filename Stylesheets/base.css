@@ -1,9 +1,9 @@
 body{
-  background-color:#556d59;
+  background-color:#4d86a0;
   font-size: 13pt;
   }
 a:link{
-  color:#ffffff; 
+  color:#ffffff;
 }
 a:visited{
   color:#ffffff;
@@ -14,12 +14,31 @@ p {
   /*
 thead {
   color:red;
-counter-increment:; 
+counter-increment:;
   }
 */
+h1{
+font-size: :14pt;
+color:#ffffff;
+
+}
 footer{
   font-size: 10pt;
+  text-align: center;
 }
 input:invalid {
     color:red;
   }
+div.center{
+/*color:#ffffff; */
+padding-left: 11em;
+}
+div.leftside{
+  position: fixed;
+  left: 2em;
+  width: 9em;
+  padding-bottom: 2em;
+}
+div.header{
+
+}
