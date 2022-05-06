@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Weekly Schedule</title>
+<style>
+  @page {
+    size: letter portrait;
+  }
+  @media print {
+  table {page-break-after: always;}
+  }
+
+/*
+  @media print {
+  td {color: black;
+  }
+*/
+  table, thead, td {
+    font-size: 10pt;
+    border: 1px solid black;
+    text-align: center;
+/*    color: black; */
+  }
+  th {
+    background-color: cornsilk;
+    color: black;
+  }
+  td:nth-of-type(1){
+    background-color: cornsilk;
+    color: black;
+  }
+  tr:nth-child(odd) {
+    background-color: cadetblue;
+    color: white;
+  }
+  tr:nth-child(even) {
+    background-color: rgb(66, 218, 74);
+    color: white;
+  }
+</style>
+<script>
+  function funny()
+    {
+      var jokes = [
+        "If Daddy is awake, please tell him to, go back to sleep.",
+        "If you are scared, it is probably becayse your pee is angry.",
+        "If you are reading this, go back to sleep.",
+        "A ranger would, go back to sleep.",
+        "A book would say, go back to sleep.",
+        "If Daddy is snoring you awake, go back to sleep.",
+        "Your eyelids protect you, go back to sleep."
+      ]
+      document.write(jokes[Math.floor(Math.random() * 7)]);
+//      document.write(jokes[0]);
+    } 
+</script>
+</head>
+
+<body>
+<table>
+  <caption>William's Schedule</caption>
+  <tr><th>Time</th><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr>
+  <tr><td>3:00 AM</td><td colspan="7" rowspan="3"><script>funny();</script></td></tr>
+  <tr><td>4:00 AM</td></tr>
+  <tr><td>5:00 AM</td></tr>
+  <tr><td>6:00 AM</td><td colspan="7">Wake Up</td></tr>
+  <tr><td>6:30 AM</td><td colspan="7">Free time</td></tr>
+  <tr><td>7:00 AM</td><td colspan="7">Eat breakfast</td></tr>
+  <tr><td>7:30 AM</td><td colspan="7">Brush teeth.</td></tr>
+  <tr><td>8:00 AM</td><td colspan="7">Make beds and get dressed.</td></tr>  
+  <tr><td>8:30 AM</td><td></td><td colspan="5" rowspan="4">School</td><td></td></tr>
+  <tr><td>9:00 AM</td><td></td><td></td></tr>
+  <tr><td>9:30 AM</td><td></td><td></td></tr>
+  <tr><td>10:00 AM</td><td></td><td></td></tr>
+  <tr><td>10:45 AM</td><td></td><td colspan="5">Snack</td><td></td></tr>
+  <tr><td>11:00 AM</td><td></td><td colspan="5" rowspan="3">School</td><td></td></tr>
+  <tr><td>11:30 AM</td><td></td><td></td></tr>
+  <tr><td>12:00 PM</td><td>Empty trash cans</td><td>Clean Bathroom</td></tr>
+  <tr><td>12:30 PM</td><td></td><td colspan="5">Lunch</td><td></td></tr>
+  <tr><td>1:00 PM</td><td></td><td colspan="5" rowspan="6">School Work until completed</td><td></td></tr>
+  <tr><td>1:30 PM</td><td></td><td></td></tr>
+  <tr><td>2:00 PM</td><td></td><td></td></tr>
+  <tr><td>2:30 PM</td><td></td><td></td></tr>
+  <tr><td>3:00 PM</td><td></td><td></td></tr>
+  <tr><td>3:30 PM</td><td></td><td></td></tr>
+  <tr><td>4:00 PM</td><td>Empty trash cans</td><td rowspan="2">Martial Arts</td><td></td><td rowspan="2">Martial Arts</td><td></td><td></td><td></td></tr>
+  <tr><td>4:30 PM</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>5:00 PM</td><td colspan="7">Dinner time.  Daddy is doing microwave styrofoam.</td></tr>
+  <tr><td>5:30 PM</td><td colspan="7">&nbsp;</td></tr>
+  <tr><td>6:00 PM</td><td colspan="7">Clean up table, sweep floor</td></tr>
+  <tr><td>6:30 PM</td><td colspan="7">Brush Teeth and rooms ready for bed.</td></tr>
+  <tr><td>7:00 PM</td><td colspan="5">Book Time!</td><td>Movie Night!</td><td>No idea night</td></tr>
+  <tr><td>8:00 PM</td><td colspan="7">Bed Time</td></tr>
+  <tr><td>9:00 PM</td><td colspan="7" rowspan="4"><script>funny();</script></td></tr>
+  <tr><td>10:00 PM</td></tr>
+  <tr><td>11:00 PM</td></tr>
+  <tr><td>12:00 AM</td></tr>
+  </table>
+
+
+  <table>
+    <caption>Victor's Schedule</caption>
+    <tr><th>Time</th><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr>
+    <tr><td>3:00 AM</td><td colspan="7" rowspan="3"><script>funny();</script></td></tr>
+    <tr><td>4:00 AM</td></tr>
+    <tr><td>5:00 AM</td></tr>
+    <tr><td>6:00 AM</td><td colspan="7">Wake Up</td></tr>
+    <tr><td>6:30 AM</td><td colspan="7">Free time</td></tr>
+    <tr><td>7:00 AM</td><td colspan="7">Eat breakfast</td></tr>
+    <tr><td>7:30 AM</td><td colspan="7">Brush teeth.</td></tr>
+    <tr><td>8:00 AM</td><td colspan="7">Make beds and get dressed.</td></tr>  
+    <tr><td>8:30 AM</td><td></td><td colspan="5" rowspan="3">Morning School Check-in School</td><td></td></tr>
+    <tr><td>9:00 AM</td><td></td><td></td></tr>
+    <tr><td>9:30 AM</td><td></td><td></td></tr>
+    <tr><td>10:00 AM</td><td></td><td colspan="5">Snack</td><td></td></tr>
+    <tr><td>10:30 AM</td><td></td><td colspan="5" rowspan="3">Grandma Becky</td><td></td></tr>
+    <tr><td>10:15 AM</td><td></td><td></td></tr>
+    <tr><td>11:00 AM</td><td></td><td></td></tr>
+    <tr><td>11:30 AM</td><td></td>                <td colspan="5" rowspan="2">Lunch Break</td><td></td></tr>
+    <tr><td>12:00 PM</td><td>Empty trash cans</td><td>Clean Bathroom</td></tr>
+    <tr><td>12:40 PM</td><td></td><td colspan="5" rowspan="3">School (smal group)</td><td></td></tr>
+    <tr><td>1:00 PM</td><td></td><td></td></tr>
+    <tr><td>1:30 PM</td><td></td><td></td></tr>
+    <tr><td>2:00 PM</td><td></td><td colspan="5" rowspan="2">School Work until completed<td></td></tr>
+    <tr><td>2:30 PM</td><td></td><td></td></tr>
+    <tr><td>3:00 PM</td><td></td><td></td><td rowspan="2">Martial Arts</td><td></td><td rowspan="2">Martial Arts</td><td></td><td></td></tr>
+    <tr><td>3:30 PM</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>4:00 PM</td><td>Empty trash cans</td><td></td><td></td><td></td><td colspan="3"></td></tr>
+    <tr><td>4:30 PM</td><td></td><td></td><td></td><td></td><td colspan="3"></td></tr>
+    <tr><td>5:00 PM</td><td colspan="7">Dinner time.  Daddy is doing microwave styrofoam.</td></tr>
+    <tr><td>5:30 PM</td><td colspan="7">&nbsp;</td></tr>
+    <tr><td>6:00 PM</td><td colspan="7">Clean up table, sweep floor</td></tr>
+    <tr><td>6:30 PM</td><td colspan="7">Brush Teeth and rooms ready for bed.</td></tr>
+    <tr><td>7:00 PM</td><td colspan="5">Book Time!</td><td>Movie Night!</td><td>No idea night</td></tr>
+    <tr><td>8:00 PM</td><td rowspan="2" colspan="7">Bed time.</td></tr>
+    <tr><td>9:00 PM</td></tr>
+    <tr><td>10:00 PM</td><td colspan="7" rowspan="3"><script>funny();</script></td></tr>
+    <tr><td>11:00 PM</td></tr>
+    <tr><td>12:00 AM</td></tr>
+    </table>
+
+</body>
+</html>
+
+<!--<td>Bring in trash cans</td> 
+
+go back to sleep your eyelids protect you
+
+-->

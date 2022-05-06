@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>
+    Software Defined Storage proof of concept
+  </title>
+</head>
+<body>
+<h3>
+Hosts
+</h3>
+<p>
+<a href="ssh://192.168.0.201">ssh 192.168.0.201 node1</a><br>
+<a href="ssh://192.168.0.202">ssh 192.168.0.202 node2</a><br>
+<a href="ssh://192.168.0.203">ssh 192.168.0.203 node3</a><br>
+</p>
+<h3>
+Gluster service address (seperate backend network)
+</h3>
+<ul>
+<li>192.168.100.201</li>
+<li>192.168.100.202</li>
+<li>192.168.100.203</li>
+<h3>
+Setup
+</h3>
+<p>
+Initial setup please run setup script on local web server.<br/>
+curl http://192.168.0.10/setup/setup | bash
+</p>
+
+<p>Configure LVM pool for internal disks and setup file system.</p>
+<p>Configure each disk for LVM usage</p>
+<pre>
+pvcreate /dev/nvme2n1 
+pvcreate /dev/nvme3n1
+pvcreate /dev/nvme4n1
+
+vgcreate gluster_brick1 /dev/nvme2n1 /dev/nvme3n1 /dev/nvme4n1
+
+lvcreate --stripes 3 --size 4TB gluster_brick1 ;This creates a striped volume accross the three SSDs in the volume group.
+</pre>
+<p>Create logical volume and file system.</p>
+<pre>
+mkfs.xfs /dev/gluster_brick1/lvol0
+</pre>
+<p>Identify the UUID for the newly created logical volume and configure the mount point.</p>
+<pre>
+blkid
+mkdir -p /bricks/brick1
+UUID=87d7d2ca-a67b-4cd4-9e66-6cab473a59ef       /bricks/brick1  xfs     defaults        1 2
+
+</pre>
+
+<h3>
+Host Firewall Configuration
+</h3>
+<p>
+Firewall configuration for GlusterFS.  The firewall will be disabled on the GlusterFS interface utilized for GlusterFS to GlusterFS communication.  Here we assign the "GlusterFS" interface to the "trusted" firewall zone.
+</p>
+<pre>
+firewall-cmd --zone=trusted --change-interface=eno2np1
+
+firewall-cmd --zone=trusted --change-interface=eno2np1 --permanent
+How to make persist through reboots.
+</pre>
+
+
+<h3>Install GlusterFS</h3>
+<pre>
+dnf install centos-release-gluster
+dnf install glusterfs-server
+
+systemctl enable glusterd
+systemctl start glusterd
+</pre>
+
+<p>Create GlusterFS volume(s).</p>
+<pre>
+gluster volume create gv0 replica 2 192.168.200.10:/volumes/volume1/gv0 192.168.200.11:/volumes/volume1/gv0
+
+gluster volume start gv0
+</pre>
+
+<pre>
+firewall-cmd --zone=public --add-service=glusterfs
+firewall-cmd --zone=public --add-service=glusterfs --permanent
+</pre>
+
+<h3>Future Plans</h3>
+<p>
+Potential way to execute scripts. "curl -s http://example.com/script.sh | bash"
+</p>
+<p>Basic GlusterFS <a href="https://docs.gluster.org/en/latest/Quick-Start-Guide/Quickstart/">installation</a> information.</p>
+<p>Basic GlusterFS <a href="https://docs.gluster.org/en/latest/Administrator-Guide/GlusterFS-iSCSI/">setup</a> for iSCSI</p>
+<p>Future WebUI</p>
+<ul>
+  <li><a href="https://www.gluster.org/web-interface-to-manage-gluster-nodes/">Gluster Web Interface</a></li>
+  <li><a href="https://www.ovirt.org/documentation/installing_ovirt_as_a_standalone_manager_with_local_databases/">OVirt standalone</a></li>
+  <li><a href="https://www.ovirt.org/documentation/installing_ovirt_as_a_self-hosted_engine_using_the_cockpit_web_interface/">Cockpit with OVirt</a></li>
+  <li><a href="https://github.com/gluster/gluster-ansible">Ansible Gluster</a></li>
+</ul>
+<a href="https://github.com/torvalds/linux/blob/master/drivers/ata/libata-core.c">Crucial/Micron MX500 SSDs not handling TRIM in Linux.</a>
+</body>
