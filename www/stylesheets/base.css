@@ -18,20 +18,20 @@ counter-increment:;
   }
 */
 h1{
-font-size: :14pt;
-color:#ffffff;
-
+  font-size: :14pt;
+  color:#ffffff;
 }
 footer{
   font-size: 10pt;
   text-align: center;
+  padding-left: 13em;
 }
 input:invalid {
     color:red;
   }
 div.center{
-/*color:#ffffff; */
-padding-left: 11em;
+  /*color:#ffffff; */
+  padding-left: 11em;
 }
 div.leftside{
   position: fixed;
