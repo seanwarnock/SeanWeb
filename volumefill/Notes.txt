@@ -1,0 +1,4 @@
+Edit /etc/caddy/Caddyfile and make certain to add warnocksolutions.com
+
+templates
+encode zstd gzip

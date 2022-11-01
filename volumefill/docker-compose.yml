@@ -1,0 +1,17 @@
+version: "3"
+services:
+  frontend:
+    #    image: "caddy:2.6.0-beta.3"
+    image: "caddy:2.6.2"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - webdir:/data
+      - configdir:/config
+      - seanjunk:/usr/share/caddy
+volumes:
+  webdir:
+  configdir:
+  seanjunk:
