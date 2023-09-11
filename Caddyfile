@@ -1,0 +1,8 @@
+warnocksolutions.com {
+        root * /usr/share/caddy
+
+        # Enable the static file server.
+        encode zstd gzip
+        templates
+        file_server
+}

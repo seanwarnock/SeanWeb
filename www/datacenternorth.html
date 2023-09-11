@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Data Center North</title>
+    <!-- <link rel="stylesheet" href="./stylesheets/main.css"> -->
+    <link rel="stylesheet" href="./stylesheets/base.css" type="text/css" />
+    <link rel="icon" type="image/png" href="./images/favicon.png" />
+</head>
+<body>
+  {{include "./menu.html"}}
+  <div class="center">
+	
+	
+	<h1>Data Center Dublin North - Open Compute Windmill deployment</h1>
+  <h2>Purpose</h2>
+  <p>Deploy a small two through four node cluster of machines in a "hyper converged" infastructure method.  The cluster must support virtual machines and should support containterized applications if possible.</p> 
+
+
+  <p>Deploy an OpenStack <a href="https://www.openstack.org/software/sample-configs/#compute-starter-kit">"Compute Start Kit"</a> four node group of machines.    Primary services will be virtual machines images(KVM), container images (Podman or Docker). </p>
+  <a href="https://docs.openstack.org/install-guide/">OpenStack Docs</a>
+  <h2>Technical Implementations</h2>  
+
+
+  <h3>oVirt</h3>
+    <p>Consider taking a look at <a href="https://www.ovirt.org">oVirt</a></p>
+    <ol>
+      <li>GlustFS config for storage.</li>
+      <li>Figure out oVirt.</li>
+    </ol>
+    <p>Node disposition</p>
+    <table>
+      <thead>
+        <tr><th>Hostname</th><th>External</th><th>Internal</th><th>Service(s)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Node 1</td><td>192.168.0.201/24</td><td>192.168.100.201/24</td></tr>
+        <tr><td>Node 2</td><td>192.168.0.202/24</td><td>192.168.100.202/24</td></tr>
+        <tr><td>Node 3</td><td>192.168.0.203/24</td><td>192.168.100.203/24</td></tr> 
+      </tbody>
+    </table>
+     
+
+
+  <h3>StarlingX</h3>
+    <p>The first attempts at running StarlingX failed.  The hardware requirements of 64GB of RAM and two storage devices was not meet.  I may revisit this configurtion by canabalizing RAM from one of the other nodes and attempting to use an NVMe drive as a PCIe device to meat the minimum requirements.</p>  
+
+<!--
+  <h3>Harvester</h3>
+    <p>Running Harvester installer from UEFI boot USB does not appear to work.</p>
+    <p>Attempt two after clearing disk partitions only and running Harvester installer via BIOS boot (installer looks different this way during boot).</p>
+    <p>Got it up and running but it's pretty much an undocumented "pretty" interface.  Not certain this is a good option over Ubuntu or CentOS.</p>
+-->
+
+  <h2>Kubernetes cluster</h2>
+  <p>
+Disable swap
+comment out swap line in /etc/fstab
+
+Disable IPv6
+https://linuxconfig.org/how-to-disable-ipv6-address-on-ubuntu-20-04-lts-focal-fossa
+update /etc/default/grub
+GRUB_CMDLINE_LINUX_DEFAULT="ipv6.disable=1"
+then run update-grub and reboot
+
+
+Network configuration
+bond0
+mode: balance-alb
+
+</p>
+
+  <h2>VMWare to NFS datastore using kernel NFS v4</h2>
+  <p>The goal for this testing is to have an ESXi 6.7 host connected to a NFS server via NFS 4.1 protocol.  The storage will be backed via a GlusterFS clustered volume.</p>
+  <p>Using virt-mgr I was able to get ESXi 6.7 installed as a guest machine.</p>
+  <p>This ran into quite a few issues with NFS and ESX.  ESX does not support multipath NFS.  ESX was completely unable to mount NFS volumes presented by NFSGanesha.  ESX did connect to Kernel NFS but was "flakey".</p>
+  <h2>Ubuntu Base OS configuration</h2>
+  <ol>
+    <li>Ubuntu 20.04</li>
+    <li>Configure IP addresses for service and backend networks.</li>
+    <li>apt install ssh</li>
+    <li>apt install firewalld</li>
+    <li>apt install smartmontools</li>
+    <li>apt install chrony</li>
+    <li>apt install xfsprogs - and configure XFS volumes on each drive.</li>
+    <li>sudo apt install glusterfs-server</li>
+    <li><p>
+apt install software-properties-common
+
+Then add the community GlusterFS PPA:
+
+add-apt-repository ppa:gluster/glusterfs-7
+apt update
+
+Finally, install the packages:
+
+apt install glusterfs-server
+</p></li>
+  </ol>
+
+
+
+
+
+
+
+
+  <h2>Base CentOS Stream configuraiton</h2>
+  <ol>
+    <li>CentOS 8 minimal install</li>
+    <li>dnf install dnf-automatic</li>
+    <li>systemctl enable dnf-automatic-timer</li>
+    <li>edit /etc/dnf/automatic.conf change "apply_updates = yes"</li>
+<!--    <li>convert to CentOS Stream NO NO NO NO</li> -->
+  </ol>
+  <h2>MEI fix for Windmill 2.0 server</h2>
+  <ol>
+    <li>(modprobe -r mei echo "blacklist mei" >> /etc/modprobe.d/local-blacklist.conf echo "install mei /bin/false" >> /etc/modprobe.d/local-blacklist.conf)</li>
+    <li>echo "blacklist mei" >> /etc/modprobe.d/local-blacklist.conf</li>
+    <li>echo "install mei /bin/false" >> /etc/modprobe.d/local-blacklist.conf</li>
+  </ol>
+  <h2>Chrony NTP configuration</h2>
+
+  <ol>
+    <li>Create directory to use for NFS share</li>
+  </ol>
+  <h3>Network configuration</h3>
+  <ol>
+    <li>Use chronyd to synchronize to know time source</li>
+    <li>To be determined, firewall currently disabled.  Recomendations are to have a dedicated network interface for gluster node communication and not firewall this interface on the network.</li>
+
+  </ol>
+  <h3>Drive configuration</h3>
+  <ol>
+    <li>mkfs.xfs /dev/vdb</li>
+  </ol>
+  <h3>GlusterFS configuration</h3>
+  <ol>
+    <li>dnf install centos-release-gluster</li>
+    <li>dnf install glusterfs-server</li>
+    <li>mkdir gv0</li>
+    <li>gluster volume create gv0 replica 2 192.168.0.101:/bricks/brick1/gv0/ 192.168.0.102:/bricks/brick1/gv0/</li>
+    <li>gluster volume start gv0</li>
+
+  </ol>
+  <h3>Kernel NFS configuration</h3>
+  <ol>
+    <li>dnf install nfs-utils</li>
+    <li>Edit /etc/exports /&#60;directory name&#62; 192.168.0.0/24(rw,all_squash)</li>
+  </ol>
+  
+<!--  Bad idea work for NFS -->
+
+  <h3>NFS-Ganesha installation methodology</h3>
+  <p>Having trouble with nfs-ganesha30 package on CentOS Stream.  Trying nfs-ganesha28</p>
+  
+  <ol>
+    <li>dnf install dnf-automatic</li>
+    <li>edit /etc/dnf/automatic.conf change "apply_updates = yes"</li>
+    <li>dnf install centos-release-nfs-ganesha30</li>
+    <li>yum -y install nfs-ganesha nfs-ganesha-yum -y install nfs-ganesha nfs-ganesha-vfs</li>
+    <li>dnf --enablerepo=centos-nfs-ganesha3</li>
+    <li>sed -i -e "s/enabled=1/enabled=0/g" /etc/yum.repos.d/CentOS-NFS-Ganesha-3.repo</li>
+    <li>dnf -y install centos-release-nfs-ganesha30</li>
+  </ol>
+  <p>Argh...  CentOS stream's package for nfs-ganesha30 does not include vfs.  Switched to Ubuntu 20.04, please note much newer kernel</p>
+  <ol>
+    <li>Install Ubuntu server 20.04</li>
+    <li>sudo apt install nfs-ganesha nfs-ganesha-vfs</li>
+    <li>Configure /etc/ganesha/ganesha.conf</li>
+  </ol>
+<span>
+EXPORT
+{
+  Export_Id = 5;
+  Path = /nfs;
+  Pseudo = /nfs;
+  Protocols = 4;
+  Access_Type = RW;
+#Squash = root_squash;
+  Sectype = none,sys;
+  FSAL {
+    Name = vfs;
+  }
+}
+</span>
+
+  <h2>Hardware deployment</h2>
+  <img src="./images/server1.jpg" alt="OpenCompute Windmill server" width="500" height="500">
+  <table>
+    <tr><td>Description</td><td>Quantity</td><td>Price</td><td>Ext. Price</td></tr>
+    <tr><td>240v outlet</td><td>2</td><td></td><td></td></tr>
+    <tr><td>Cover plate</td><td>2</td><td></td><td></td></tr>
+    <tr><td>Double gang box</td><td>2</td><td></td><td></td></tr>
+    <tr><td>Single gang box</td><td>2</td><td></td><td></td></tr>
+    <tr><td>Windmill R2.0 Server</td><td>4</td><td></td><td></td></tr>
+    <tr><td>Winbond 25q128bvfg</td><td>0</td><td></td><td></td></tr>
+    <tr><td>Intel 2680 CPU</td><td>2</td><td></td><td></td></tr>
+    <tr><td>Intel 2665 CPU</td><td>2</td><td></td><td></td></tr>
+    <tr><td>Micron 8GB DDR3</td><td>16</td><td></td><td></td></tr>
+    <tr><td>OEM (Dell) AMD 6450</td><td>1</td><td></td><td></td></tr>
+  </table>
+  
+  
+  <p>Network configuration via ONOS.</p>
+  <ol>
+    <li>Temperature monitoring via ipmi?</li>
+    <li>BMC does not provide console access.</li>
+  
+    <li>DCIM, can I get it working?</li>
+    <li>Reboot issued through OS does not restart machine without a power cycle. Is it possible to write CoreBoot to the firmware instead?</li>
+  </ol>
+
+  <h2>Problem list</h2>
+  <ul>
+    <li>Server reboot does not power back up.  Appears to me a management engine bug in firmware. - Resolved by disabling mei kernel module. (modprobe -r mei
+      echo "blacklist mei" >> /etc/modprobe.d/local-blacklist.conf        
+      echo "install mei /bin/false" >> /etc/modprobe.d/local-blacklist.conf)</li>
+    <li>Wake on LAN not working in any way.</li>
+  </ul>
+  <h2>Packages</h2>
+  <ul>
+    <li>lm_sensors</li>
+    <li>freeipmi</li>
+  </ul>
+  </div>
+</body>
+</html>   

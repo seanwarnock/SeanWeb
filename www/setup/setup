@@ -1,0 +1,11 @@
+echo "Quick and dirty bash script to get GlusterFS up and running"
+dnf -y install chrony cockpit smartmontools
+curl -o /etc/modprobe.d/local-blacklist.conf http://192.168.0.10/setup/local-blacklist.conf
+systemctl enable --now cockpit.socket
+dnf -y install centos-release-gluster 
+#Don't know if I need this yet.
+#dnf -y install epel-release
+dnf config-manager --set-enabled powertools
+dnf -y install glusterfs-server
+systemctl enable glusterd
+systemctl start glusterd

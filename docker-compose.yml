@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  frontend:
+    image: "caddy:2.7.4"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+      - ./www:/usr/share/caddy
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    restart: always
+volumes:
+  caddy_data:
+    external: true
+  caddy_config:
+    #  website:

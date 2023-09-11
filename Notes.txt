@@ -1,0 +1,7 @@
+Edit /etc/caddy/Caddyfile and make certain to add warnocksolutions.com
+
+templates
+encode zstd gzip
+
+
+Need to copy CarCalculators/volumefill/www to whatever volume is mounted.
