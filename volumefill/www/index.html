@@ -4,6 +4,19 @@
   <title>Sean Warnock's homepage</title>
   <link rel="icon" type="image/png" href="./images/favicon.png" />
   <link rel="stylesheet" href="./stylesheets/base.css" type="text/css" />
+  <script>
+    const thefooter = fetch("/test");
+
+
+    thefooter.then((response) => {
+      console.log(`Received response: ${response.status}`);
+      const jsondata = response.json();
+      jsondata.then((data) => {
+        console.log(data);
+      });
+    });
+    
+  </script>
 </head>
 <body>
   <div class="header"></div>
@@ -12,7 +25,7 @@
     <p>Just a simple website to put experiments and information.  This is a classic static homepage with my own personal ramblings.</p>
   </div>
   <footer>
-    <p>All of this is programmed by hand and every attempt is made to have it support a standard web browser that can support <a href="https://www.w3.org/html/" target="=_blank">HTML 5.1</a> and <a href="https://www.ecma-international.org/publications/standards/Ecma-262.htm" target="_blank">ECMA Script</a>.</p>
+    <p>All of this is programmed by hand and every attempt is made to have it support a standard web browser that can support <a href="https://www.w3.org/html/" target="=_blank">HTML 5.1</a> and <a href="https://www.ecma-international.org/publications-and-standards/standards/ecma-262/" target="_blank">ECMA Script</a>.</p>
   </footer>
 </body>
 </html>
