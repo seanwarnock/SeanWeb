@@ -1,7 +1,7 @@
 # The Warnock Homepage
 
 ### Header test
-This is my basic homepage.  Currently the active site is a containerized version of Apache HTTPD.
+This is my basic homepage.  Currently the active site is a containerized version of [Caddy](https://caddyserver.com/).
 ### Automotive Calculations
 There is a largish amount of ECMAScript / HTML perform some calculations for automotive applications.  These calculations are extremely simple but more of a DOM script practice.
 

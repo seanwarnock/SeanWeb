@@ -1,0 +1,10 @@
+#Basic idea to deploy static content to on-site runner(s).
+#
+name: 'Deployment'
+
+on: [push]
+
+jobs:
+  deploy-to-production
+    - docker-compose down
+    - docker-compose up -d
