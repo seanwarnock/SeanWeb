@@ -1,6 +1,6 @@
 #Basic idea to deploy static content to on-site runner(s).
 #
-name: 'Deployment'
+name: Deployment-Test
 
 on: [push]
 
