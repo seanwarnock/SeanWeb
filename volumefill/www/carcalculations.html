@@ -1,25 +1,23 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-<title>Automotive Calculations</title>
-  <link rel="icon" type="image/png" href="./images/favicon.png" />
-  <link rel="stylesheet" href="./stylesheets/base.css" type="text/css" />
+  {{include "./head.tmpl"}}
   <script>
 ////////////////////////////////////////////////////////////////////////////////
 //This performs all the calculations for the speed calculations.
 //Look into adding some kidn of slip estimator.
   function gearratio() {
     "use strict"
-    var intRPM;
-    var intGears;
-    var realTire;
-    var realRear;
-    var intDistanceInch = 12;
-    var intDistanceFoot = 5280;
-    var intDistanceKilometers = 1000000;
-    var intTime = 60;
-    var intCounter;
-    var objTrannyTable;
+    let intRPM;
+    let intGears;
+    let realTire;
+    let realRear;
+    let intDistanceInch = 12;
+    let intDistanceFoot = 5280;
+    let intDistanceKilometers = 1000000;
+    let intTime = 60;
+    let intCounter;
+    let objTrannyTable;
 
     intGears = document.getElementById("gears").value;
     intRPM = document.getElementById("rpm").value;
@@ -51,12 +49,12 @@
 //are inserted into the table header.
   function gearchoice() {
     "use strict"
-    var intI;
-    var intGears;
-    var holder;
-    var objTrannyTable;
-    var gearchoice;
-    var objTableRow;
+    let intI;
+    let intGears;
+    let holder;
+    let objTrannyTable;
+    let gearchoice;
+    let objTableRow;
     intGears = parseInt(document.getElementById("gears").value, 10) + 1;
 
     objTrannyTable = document.getElementById("trannytable");
@@ -87,10 +85,10 @@
     "use strict"
 
 
-    var inttirewidth = parseInt(document.getElementById("tirewidth").value);
-    var tirer = document.getElementById("tirer");
-    var inttireaspect = parseInt(document.getElementById("tireaspect").value)/100;
-    var inttirewheel = parseInt(document.getElementById("tirewheel").value);
+    let inttirewidth = parseInt(document.getElementById("tirewidth").value);
+    let tirer = document.getElementById("tirer");
+    let inttireaspect = parseInt(document.getElementById("tireaspect").value)/100;
+    let inttirewheel = parseInt(document.getElementById("tirewheel").value);
 
     document.getElementById("tireanswer").innerHTML = Math.round(((inttirewidth * inttireaspect * 2 + (inttirewheel * 25.4)) / 25.4) * 10) / 10;
   }
