@@ -8,5 +8,9 @@ jobs:
   deploy-to-production:
     runs-on: self-hosted
     steps:
-    - run: echo "hello world"
+      - name: Git pull 
+        uses: actions/checkout@v4
+      
+      - name: Check directory
+        run: ls -lh
 #    - run: docker-compose up -d
