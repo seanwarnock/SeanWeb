@@ -8,5 +8,5 @@ jobs:
   deploy-to-production:
     runs-on: self-hosted
     steps:
-    - run: sudo docker ps
+    - run: echo "hello world"
 #    - run: docker-compose up -d
