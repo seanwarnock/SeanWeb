@@ -5,6 +5,8 @@ name: Deployment-Test
 on: [push]
 
 jobs:
-  deploy-to-production
-    - docker-compose down
-    - docker-compose up -d
+  deploy-to-production:
+    runs-on: self-hosted
+    steps:
+    - run: sudo docker ps
+#    - run: docker-compose up -d
