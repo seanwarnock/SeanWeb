@@ -8,9 +8,9 @@
 <table>
 <tr>
   <td>CPU usage</td>
-  <td>
-          {{template "prom_query_drilldown" (args
-          "(1-avg(system_cpu_utilization_ratio{state='idle'}))*100"
+  <td>	
+	  {{template "prom_query_drilldown" (args
+	  "(1-avg(system_cpu_utilization_ratio{state='idle'}))*100"
           " %" "humanizeNoSmallPrefix")}}
   </td>
 </tr>
@@ -18,18 +18,18 @@
 <tr>
   <td>Memory usage</td>
   <td>
-          {{template "prom_query_drilldown" (args
-          "(system_memory_utilization_ratio{state='used'})*100"
-          " %" "humanizeNoSmallPrefix")}}
+	  {{template "prom_query_drilldown" (args
+	  "(system_memory_utilization_ratio{state='used'})*100"
+	  " %" "humanizeNoSmallPrefix")}}
   </td>
 </tr>
 
 <tr>
   <td>Disk queue</td>
   <td>
-          {{template "prom_query_drilldown" (args
-          "(system_disk_pending_operations)"
-          )}}
+	  {{template "prom_query_drilldown" (args
+	  "(system_disk_pending_operations)"
+	  )}}
   </td>
 </tr>
 </table>

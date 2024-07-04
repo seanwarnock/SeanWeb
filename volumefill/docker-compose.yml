@@ -18,7 +18,7 @@ services:
         #        aliases:
         #          - prom.internal.local
   otel-collector:
-    image: "otel/opentelemetry-collector-contrib:latest"
+    image: "otel/opentelemetry-collector-contrib:0.104.0"
     volumes:
       - ./otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
       - /:/hostfs
@@ -34,7 +34,7 @@ services:
     networks:
       junknet:
   frontend:
-    image: "caddy:latest"
+    image: "caddy:2.8.4"
     ports:
       - "80:80"
       - "443:443"

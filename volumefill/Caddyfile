@@ -1,7 +1,7 @@
 :80 {
-        reverse_proxy /prom/* prometheus_runtime:9090
-#       reverse_proxy back:8
-        root * /usr/share/caddy
+	reverse_proxy /prom/* prometheus_runtime:9090
+#	reverse_proxy back:8
+	root * /usr/share/caddy
 
         # Enable the static file server.
        encode zstd gzip
