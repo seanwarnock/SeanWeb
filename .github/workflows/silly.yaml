@@ -1,0 +1,16 @@
+#Basic idea to deploy static content to on-site runner(s).
+#
+name: Deployment-Test
+
+on: [push]
+
+jobs:
+  deploy-to-production:
+    runs-on: self-hosted
+    steps:
+      - name: Git pull 
+        uses: actions/checkout@v4
+      
+      - name: Check directory
+        run: ls -lh
+#    - run: docker-compose up -d
