@@ -11,6 +11,6 @@ jobs:
       - name: Git pull 
         uses: actions/checkout@v4
       
-      - name: Check directory
-        run: ls -lh
+          #      - name: Check directory
+          #        run: docker-compose -d up 
 #    - run: docker-compose up -d
