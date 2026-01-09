@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Text to Speech Test</title>
+    <link rel="icon" type="image/png" href="./images/favicon.png" />
+    <script>
+      "use strict"
+      function notifier(){
+        var msg = new SpeechSynthesisUtterance();
+	    
+        var stufftotest = []; //empty array used to store the picked lines.
+
+///////////////////////////////////////////////////////////////////////////////        
+        const whitebeltcycle1 = [
+            "Upward Block",
+            "Inward Block",
+            "Outward Block",
+            "Downward Block",
+            "Belt Tying",
+            "Horse Stance",
+            "Forward Stance and sidestep",
+            "Back Stance and sidestep",
+            "Cat Stance and sidestep",
+            "Forward Thrust Punch",
+            "Palm Strike",
+            "Back Knuckle (to the front)",
+            "Bottomfist To the Front",
+            "Bottomfist To the Side",
+            "Reverse Punch ,from Ready Stance",
+            "Block and Reverse Punch",
+            "Football Kick",
+            "Outside Crescent Kick",
+            "Rising Kick",
+            "Front Kick",
+            "Wrist Release Same side - Circle out",
+            "Wrist Release Same side – Elbow forward",
+            "Wrist Release Cross side – Thumb back"
+            ];
+
+/*
+??? Need help on these items for if they should be in the list?
+
+    Partner Skills
+    • White dots
+    • Polite Greeting
+    • Signal
+    • Circling
+    • Reaching towards partner
+
+
+*/
+        if(document.getElementById("whitebeltcycle1").checked)
+            {
+                stufftotest.push(...whitebeltcycle1);
+            }
+
+///////////////////////////////////////////////////////////////////////////////
+        const level1cycle1 = [
+            "Grab Defense number 1",
+            "Punch Defense number 1",
+            "Self Defense Combo number 1",
+            "Backward Fall",
+            "Backward Roll",
+            "Elbow Strikes"
+        ];
+	    const level1cycle2 = [
+            "Starting Position",
+            "Basic Form",
+            "Finish Position",
+            "Back-leg Roundhouse kick",
+            "Front-leg Roundhouse kick",
+            "Front-leg sidekick",
+            "Flag Sparring"
+        ];
+	    const level1cycle3 = [
+            "Upper-cross block",
+            "Lower-cross block",
+            "Palm block",
+            "Blade of the hand block to the front",
+            "Vertical Punch",
+            "Elbow Strike",
+            "Side chop",
+            "Spear hand Vertical",
+            "Spear hand palms up",
+            "Spear hand palms down",
+            "Back Kick","Side Kick",
+            "Roundhouse Kick",
+            "Forward Roll",
+            "Wrist Release Combos"
+        ];
+	    const level1cycle4 = [
+            "Pinion 1",
+            "Back Knuckle Punch",
+            "4 point block"
+        ];
+
+        if(document.getElementById("level1cycle1").checked)
+            {
+                stufftotest.push(...level1cycle1);
+            }
+        if(document.getElementById("level1cycle2").checked)
+            {
+                stufftotest.push(...level1cycle2);
+            }
+        if(document.getElementById("level1cycle3").checked)
+            {
+                stufftotest.push(...level1cycle3);
+            }
+        if(document.getElementById("level1cycle4").checked)
+            {
+                stufftotest.push(...level1cycle4);
+            }
+
+///////////////////////////////////////////////////////////////////////////////
+        const level2cycle1 = [
+            "Stroll number 1",
+            "Stroll number 2",
+            "Back of the hand block",
+            "Blade of the hand block to the side",
+            "Elbow Strike",
+            "Shuto chop single",
+            "Uppercut",
+            "Side-to-side",
+            "Knee Strike",
+            "Kenpo Kick",
+            "Spinning Back Kick",
+            "Reverse Punch",
+            "Back-Knuckle Punch",
+            "Down + Up head blocks",
+            "Punch + Back-Knuckle Sparring"
+        ];
+        const level2cycle2 = [
+            "Pinion 2",
+            "Back-Leg Roundhouse Kick",
+            "Front-Leg Roundhouse Kick",
+            "Roundhouse Kick Counters Near/Far",
+            "Roundhouse Kick Sparring"
+        ];
+        const level2cycle3 = [
+            "Stroll number 3",
+            "Double palm",
+            "Peacock block",
+            "shuto-chop double short",
+            "Roundhouse Punch",
+            "Rising Punch",
+            "Hook Punch",
+            "Backhand Strike",
+            "Ax Kick",
+            "Hook Kick",
+            "Stick Strikes 1 through 4",
+            "Stick Blocks 1 through 4",
+            "Stick Disarms 1 through 4"
+        ];
+        const level2cycle4 = [
+            "Grab Defense number 2",
+            "Punch Defense number 2",
+            "Self Defense Combo number 2",
+            "Front Leg Sidekick",
+            "Sidekick Counter - down"
+        ];
+
+        if(document.getElementById("level2cycle1").checked)
+            {
+                stufftotest.push(...level2cycle1);
+            }
+        if(document.getElementById("level2cycle2").checked)
+            {
+                stufftotest.push(...level2cycle2);
+            }
+        if(document.getElementById("level2cycle3").checked)
+            {
+                stufftotest.push(...level2cycle3);
+            }
+        if(document.getElementById("level2cycle4").checked)
+            {
+                stufftotest.push(...level2cycle4);
+            }
+
+///////////////////////////////////////////////////////////////////////////////
+        const level3cycle1 = [
+            "Grab Defense number 3",
+            "Punch Defense number 3",
+            "Self Defense Combo number 3",
+            "Hook Kick",
+            "Ax Kick",
+            "Hook Kick + Ax Kick Counters (step forward; triangle step)",
+            "Hook + Ax Kick Sparring"
+        ];
+        const level3cycle2 = [
+            "Pinion number 3",
+            "Padded Stick Strikes",
+            "Padded Stick Blocks",
+            "Padded Stick Sparring"
+        ];
+        const level3cycle3 = [
+            "Grab Defense number 4",
+            "Punch Defense number 4",
+            "Self Defense Combo number 4",
+            "Defensive Sidekick",
+            "Defensive Spin Back Kick",
+            "Defensive Side & Defensive Spin Back Kicks vs Attacks",
+            "Defensive Side & Spin Back Kick Sparring"
+        ];
+        const level3cycle4 = [
+            "Shuto chop double long",
+            "Tiger claw",
+            "Bear claw",
+            "U-Punch",
+            "Ridgehand",
+            "Pinion number 4",
+            "Takedowns 1 + 2",
+            "Takedown 1 + 2 Counters",
+            "Takedown Sparring"
+        ];
+
+        if(document.getElementById("level3cycle1").checked)
+            {
+                stufftotest.push(...level3cycle1);
+            }
+        if(document.getElementById("level3cycle2").checked)
+            {
+                stufftotest.push(...level3cycle2);
+            }
+        if(document.getElementById("level3cycle3").checked)
+            {
+                stufftotest.push(...level3cycle3);
+            }
+        if(document.getElementById("level3cycle4").checked)
+            {
+                stufftotest.push(...level3cycle4);
+            }
+
+///////////////////////////////////////////////////////////////////////////////
+        const level4cycle1 = [
+            "Grab Defense number 5",
+            "Punch Defense number 5",
+            "Spinning Hook Kick",
+            "Tornado Kick",
+            "Mount Position and Escape",
+            "Side Control Position and Escape",
+            "Guard Position and Escape"
+        ];
+        const level4cycle2 = [
+            "Pinion number 5",
+            "Ridgehand Attack and Counter",
+            "Double Palm Block Counter",
+            "Continuous Sparring"
+        ];
+
+        if(document.getElementById("level4cycle1").checked)
+            {
+                stufftotest.push(...level4cycle1);
+            }
+        if(document.getElementById("level4cycle2").checked)
+            {
+                stufftotest.push(...level4cycle2);
+            }
+
+//Then randomize the "new" array.
+//https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj            
+
+        msg.lang = 'en';
+        msg.rate
+
+        //Idea 
+        //msg.text = stufftotest[Math.floor(Math.random()*(stufftotest.length))];
+        //setTimeout()      
+        stufftotest.forEach((element) => {
+            msg.text = element;
+            window.speechSynthesis.speak(msg);
+            window.alert(msg.text);
+        });
+       }    
+    </script>
+<!--
+Pick a list of the stuff to say somehow.
+-->
+  </head>
+
+  <body>
+          <p>Please choose which levels you would like to practice:</p>
+          <form onsubmit="notifier()">
+<!---------------------------------------------------------------------------->
+            <h2>White Belts</h2>
+            <input type="checkbox" id="whitebeltcycle1">Cycle 1</input><br />
+
+<!---------------------------------------------------------------------------->
+            <h2>Level 1</h2>
+            <input type="checkbox" id="level1cycle1">Cycle 1</input><br />
+            <input type="checkbox" id="level1cycle2">Cycle 2</input><br />
+            <input type="checkbox" id="level1cycle3">Cycle 3</input><br />
+            <input type="checkbox" id="level1cycle4">Cycle 4</input><br />
+<!---------------------------------------------------------------------------->
+            <h2>Level 2</h2>
+            <input type="checkbox" id="level2cycle1">Cycle 1</input><br />
+            <input type="checkbox" id="level2cycle2">Cycle 2</input><br />
+            <input type="checkbox" id="level2cycle3">Cycle 3</input><br />
+            <input type="checkbox" id="level2cycle4">Cycle 4</input><br />
+<!---------------------------------------------------------------------------->
+            <h2>Level 3</h2>
+            <input type="checkbox" id="level3cycle1">Cycle 1</input><br />
+            <input type="checkbox" id="level3cycle2">Cycle 2</input><br />
+            <input type="checkbox" id="level3cycle3">Cycle 3</input><br />
+            <input type="checkbox" id="level3cycle4">Cycle 4</input><br />
+<!---------------------------------------------------------------------------->
+            <h2>Level 4</h2>
+            <input type="checkbox" id="level4cycle1">Cycle 1</input><br />
+            <input type="checkbox" id="level4cycle2">Cycle 2</input><br />
+
+            <button type="submit">Test</button>
+          
+        </form>
+  </body>
+  <footer>
+          Martial flash cards
+  </footer>
+</html>

@@ -1,0 +1,9 @@
+#The double entry for the URL provides both local connections
+#and proper HTTP/HTTPs connections
+http://192.168.1.201, warnocksolutions.com {
+  reverse_proxy /prom/* prometheus_runtime:9090
+  root * /usr/share/caddy
+  encode zstd gzip
+  templates
+  file_server
+}
